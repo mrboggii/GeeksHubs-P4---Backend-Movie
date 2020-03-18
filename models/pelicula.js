@@ -1,5 +1,5 @@
 module.exports = (sequelize, type) => {
-    const Pelicula = sequelize.define('pelicula', {
+    const Pelicula = sequelize.define('Pelicula', {
         titulo: {
             type: type.STRING
         },
@@ -15,5 +15,3 @@ module.exports = (sequelize, type) => {
       })
       return Pelicula
     }
-
-    
