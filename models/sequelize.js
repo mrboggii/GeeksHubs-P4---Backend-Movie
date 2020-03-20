@@ -16,6 +16,8 @@ sequelize.sync()
     console.log('Tablas Creadas')
 });
 
+
+
 module.exports = {
     Pelicula,
     Cine,

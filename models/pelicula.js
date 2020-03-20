@@ -3,7 +3,7 @@ module.exports = (sequelize, type) => {
         titulo: {
             type: type.STRING
         },
-        año: {
+        anyo: {
             type: type.DATE
         },
         duracion: {

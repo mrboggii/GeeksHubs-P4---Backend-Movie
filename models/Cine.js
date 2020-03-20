@@ -6,10 +6,9 @@ module.exports = (sequelize, type) => {
         provincia: {
             type: type.STRING
         },
-      
-    }, {
+    }, 
+        {
             timestamps: true 
-
       })
       return Cine
     }

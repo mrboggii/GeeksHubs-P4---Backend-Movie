@@ -1,21 +1,50 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 //PELICULAS
 
 const {Pelicula} = require('./models/sequelize')
 
 app.get('/peliculas', (req, res) => {
-    res.send('GET /peliculas')
-})
+    Pelicula.findAll().then( peliculas => {
+        res.json(peliculas);
+    });
+});
 app.post('/peliculas/nuevo', (req, res) => {
-    res.send('POST /peliculas/nuevo')
-})
+    console.log(req.body)
+    let { titulo, anyo, duracion } = req.body;
+    Pelicula.create({
+        titulo,
+        anyo,
+        duracion        
+    })
+    .then( () => {
+        res.statusCode = 201;
+        res.json({status: "OK"})
+    })
+    .catch( err => {
+        res.statusCode = 401;
+        res.json({status: "KO", message: err})
+    })
+});
 
-app.get('peliculas/:id', (req, res) => {
-    res.send('GET /peliculas/:id')
-})
+app.get('/peliculas/:id', (req, res) => {
+    let _id = req.params.id
+    Pelicula.findAll({ where: { id: _id }}).then( peliculas => {
+        res.json(peliculas);
+    });
+});
+app.get('/peliculasportitulo/:titulo', (req, res) => {
+    let _titulo = req.params.titulo
+    console.log(_titulo)
+    Pelicula.findAll({ where: { titulo: _titulo }}).then( peliculas => {
+        res.json(peliculas);
+    });
+});
 app.put('/peliculas/:id',(req, res) => {
     res.send('PUT /peliculas/:id')
 })
