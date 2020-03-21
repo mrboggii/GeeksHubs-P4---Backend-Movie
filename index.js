@@ -195,23 +195,77 @@ app.delete('/cines/:id', async (req, res) => {
 const { Actores } = require('./models/sequelize')
 
 app.get('/actores', (req, res) => {
-    res.send('GET /actores')
-})
+    Actores.findAll().then(actores => {
+        res.json(actores);
+    });
+});
+
 app.post('/actores/nuevo', (req, res) => {
-    res.send('POST /actores/nuevo')
-})
+    console.log(req.body)
+    let { nombre, edad, peliculas } = req.body;
+    Actores.create({
+        nombre,
+        edad,
+        peliculas,
+    })
+        .then(() => {
+            res.statusCode = 201;
+            res.json({ status: "OK" })
+        })
+        .catch(err => {
+            res.statusCode = 401;
+            res.json({ status: "KO", message: err })
+        })
+});
 
-app.get('actores/:id', (req, res) => {
-    res.send('GET /actores/:id')
-})
+app.get('/actores/:id', (req, res) => {
+    let _id = req.params.id
+    Actores.findAll({ where: { id: _id } }).then(actores => {
+        res.json(actores);
+    });
+});
+app.get('/actorespornombre/:nombre', (req, res) => {
+    let _nombre = req.params.nombre
+    console.log(_nombre)
+    Actores.findAll({ where: { nombre: _nombre } }).then(actores => {
+        res.json(actores);
+    });
+});
 app.put('/actores/:id', (req, res) => {
-    res.send('PUT /actores/:id')
-})
-app.delete('/actores/:id', (req, res) => {
-    res.send('DELETE /actores/:id')
-})
+    let _id = req.params.id;
+    let body = req.body;
 
+    Actores.update(
+        body,
+        {
+            where: { id: _id }
+        }
+    ).then(() => {
+        res.statusCode = 200;
+        res.json({ status: "OK" })
+    }).catch(err => {
+        res.statusCode = 401;
+        res.json({ status: "KO", message: err })
+    });
+    app.delete('/actores/:id', async (req, res) => {
+        let id = req.params.id;
+        const actores = await Actores.findOne({ where: { id } });
+    
+        if (actores) {
+            const hasDestroyed = actores.destroy();
+            if (hasDestroyed) {
+                res.statusCode = 200;
+                res.json({ status: "OK" })
+            } else {
+                res.statusCode = 401;
+                res.json({ status: "KO 502", message: 'Datos incorrectos' })
+            }
+        } else {
+            res.statusCode = 401;
+            res.json({ status: "KO 503", message: 'Datos incorrectos' })
+        }
+    });
+    
 
 app.listen(port, () => {
-    console.log(`Logueado en server ${port}`)
-})
+    console.log(`Logueado en server ${port}`)}

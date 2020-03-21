@@ -1,9 +1,9 @@
 module.exports = (sequelize, type) => {
-    const CineActor = sequelize.define('CinePelicula', {
+    const PeliculaActores = sequelize.define('PeliculaActores', {
         cineId: {
             type: type.INTEGER,
             references: {
-                model: 'Cines',
+                model: 'Peliculas',
                 key: 'id'
               }
         },
@@ -16,5 +16,5 @@ module.exports = (sequelize, type) => {
         },
 
     });
-    return CinePelicula;
+    return PeliculaActores;
 };

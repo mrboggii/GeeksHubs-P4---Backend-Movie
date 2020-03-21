@@ -3,15 +3,23 @@ module.exports = (sequelize, type) => {
         nombre: {
             type: type.STRING
         },
-        peliculas: {
+        edad: {
             type: type.STRING
         },
-        edad: {
+        peliculas: {
             type: type.STRING
         }
     }, {
             timestamps: true 
 
       })
+
+      Actores.associate = (models) => {
+        Actores.belongsToMany(models.Actores, {
+            through: 'PeliculaActores',
+            as: 'aparece_en',
+            foreignKey: 'actoresId'
+        });
+    };
       return Actores
     }
