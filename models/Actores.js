@@ -1,5 +1,5 @@
 module.exports = (sequelize, type) => {
-    const Actor = sequelize.define('Actor', {
+    const Actores = sequelize.define('Actores', {
         nombre: {
             type: type.STRING
         },
@@ -13,5 +13,5 @@ module.exports = (sequelize, type) => {
             timestamps: true 
 
       })
-      return Actor
+      return Actores
     }
