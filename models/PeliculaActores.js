@@ -1,6 +1,6 @@
 module.exports = (sequelize, type) => {
     const PeliculaActores = sequelize.define('PeliculaActores', {
-        cineId: {
+        peliculaId: {
             type: type.INTEGER,
             references: {
                 model: 'Peliculas',
