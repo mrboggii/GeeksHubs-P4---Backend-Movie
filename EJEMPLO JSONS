@@ -1,0 +1,54 @@
+//PELICULAS
+
+{
+    "titulo":"Boggieman",
+    "anyo":"1996-05-07",
+    "duracion":"02:22:12",
+    "actores":"[1, 2,]"
+}
+{
+    "titulo":"Boggieman 2",
+    "anyo":"1999-05-07",
+    "duracion":"01:22:12",
+    "actores":"[2, 3]"
+}
+{
+    "titulo":"Tetanic",
+    "anyo":"2000-05-07",
+    "duracion":"02:22:12",
+    "actores":"[1]"
+}
+{
+    "titulo":"FrankenStein"
+    "anyo":"2004-05-07"
+    "duracion":"01:22:12"
+    "actores":[2]
+}
+
+//ACTORES
+
+{
+    "nombre":"Ioan Bogdan Prutean",
+    "edad":"24 años",
+    "peliculas":"[1, 3]"
+}
+{
+    "nombre":"mama topo",
+    "edad":"36 años",
+    "peliculas":"[1, 2, 4]"
+}
+{
+    "nombre":"Mina el Hamanni",
+    "edad":"27 años",
+    "peliculas":"[2]"
+}
+
+//CINES
+{
+    "titulo":"CINEAPOLIS"
+    "provincia":"Valencia"
+}
+{
+    "titulo":"PolisCine"
+    "provincia":"Alicante"
+}
